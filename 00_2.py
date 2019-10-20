@@ -4,7 +4,7 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon
-
+from PyQt5.QtCore import QCoreApplication
 
 '''
 if __name__ == '__main__':
@@ -47,18 +47,34 @@ if __name__ == '__main__':
 '''
 
 # 3 --------尝试添加一个窗口图标
+# 4 ------------尝试增加一个关闭按钮，实现关闭功能。
+
 class Ico(QWidget):
     def __init__(self):
         super().__init__()
         self.iniUI()
+        
     def iniUI(self):
         self.setGeometry(300,300,300,300)
         self.setWindowTitle('tree one')
         self.setWindowIcon(QIcon('./sources/favicon_star.png'))
+
+        qbth = QPushButton('quit',self)
+        qbth.clicked.connect(QCoreApplication.instance().quit)
+        qbth.resize(70,30)
+        qbth.move(50,50)
+
         self.show()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = Ico()
     sys.exit(app.exec_())
+
+
+
+'''
+ 我不是很明白super()，为什么要试着,self.iniUI().
+ ???????????????????????????????????????
+'''
 
